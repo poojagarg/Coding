@@ -1,0 +1,21 @@
+#include<stdio.h>
+#include"bst.h"
+int main(){
+	binarySearchNode* tree=NULL;
+	randomize;
+	int i=0;
+	FILE* fp=fopen("insertBST.txt","r");
+	while(!feof(fp)){
+		fscanf(fp,"%d",&i);
+		tree=insertItr(tree,i);
+	}
+	close(fp);
+	fp=fopen("deleteBST.txt","r");
+	while(!feof(fp)){
+		fscanf(fp,"%d",&i);
+		tree=del(tree,i);
+		displayBinaryTree(tree);
+		scanf("%d",&i);
+	}
+	close(fp);
+}
