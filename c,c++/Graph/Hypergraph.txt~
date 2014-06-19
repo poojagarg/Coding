@@ -1,4 +1,0 @@
-1- First line represents: #Edges, #vertices
-1- Each following line represents 1 edge.
-First tail vertices are written followed by head vertices for that edge.
-End of both tail and head vertices is -1.
