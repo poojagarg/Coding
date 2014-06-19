@@ -1,0 +1,54 @@
+#include<iostream>
+#include<stdio.h>
+using namespace std;
+#define nob 8
+#define arraySize 2*nob-1
+// number of elements in the array: 2(8)-1=15
+int L[arraySize]={0};
+//parent of index i: (i-1)/2
+// set L[k]=x
+void set(int k, int x){
+	//cout<<k<<":"<<x<<".";
+	int i;
+	//cin>>i;
+	if(k<0) return;
+	if(k>=arraySize) return;
+	if(k==0){
+		L[k]=x; return;
+	}
+	int temp=L[k];
+	L[k]=x;
+	//its parent: parent-current value+x
+	k=(k-1)/2;
+	if(k<0) return;
+	set(k,L[k]-temp+x);
+}
+int sum(int k){
+	int static total=0;
+	if(k<0) return 0;
+	if(k==0){
+		return total+L[k];
+	}
+	//left child if index i is odd
+	else if(k%2==0){
+		return sum((k-1)/2);
+	}
+	else{
+		total+=L[k];
+		return sum(k-1);
+	}
+}
+int main(){
+	FILE *fp=fopen("sort.txt","r");
+	int k=nob-1;
+	while(k<arraySize){
+		int d;
+		char c;
+		fscanf(fp,"%d%c",&d,&c);
+		set(k,d);
+		k++;
+	}
+	for(int i=k; i>nob-2; i--){
+		//cout<<i<<":"<<sum(k)<<'\t';
+	}
+}
