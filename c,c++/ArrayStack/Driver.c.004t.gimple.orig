@@ -1,0 +1,32 @@
+main ()
+gimple_bind <
+  int D.2207;
+  int D.2208;
+  int i;
+  int size;
+  struct ArrayStack * s;
+
+  gimple_assign <integer_cst, size, 5, NULL, NULL>
+  gimple_call <CreateStack, s, size>
+  gimple_assign <integer_cst, i, 0, NULL, NULL>
+  gimple_goto <<D.2201>>
+  gimple_label <<D.2200>>
+  gimple_assign <mult_expr, D.2207, i, size, NULL>
+  gimple_call <Push, NULL, D.2207, s>
+  gimple_assign <plus_expr, i, i, 1, NULL>
+  gimple_label <<D.2201>>
+  gimple_cond <lt_expr, i, size, <D.2200>, <D.2202>>
+  gimple_label <<D.2202>>
+  gimple_assign <integer_cst, i, 0, NULL, NULL>
+  gimple_goto <<D.2204>>
+  gimple_label <<D.2203>>
+  gimple_call <pop, D.2208, s>
+  gimple_call <printf, NULL, "%d \t", D.2208>
+  gimple_assign <plus_expr, i, i, 1, NULL>
+  gimple_label <<D.2204>>
+  gimple_cond <lt_expr, i, size, <D.2203>, <D.2205>>
+  gimple_label <<D.2205>>
+  gimple_call <DeleteStack, NULL, s>
+>
+
+

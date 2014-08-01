@@ -1,0 +1,42 @@
+_main[]
+	int a,b,c;
+	matrix mat1, mat2;
+	mat1 = [1,2, 3; 4, 5, 6; 6, 7, 8];
+	a = 3;
+	b = 5;
+	real d;
+	function [int sum, int diff, int prod]= _calculator[int c, int d]
+		sum = c + d;
+		prod = c*d;
+		diff = c - d;
+
+	end;
+	[s, d, p] = _calculator(23,15);
+
+	function [int s] = _square[int u] 
+	    s = u*u; 
+	end; 
+	
+	function [int s] = _square[int u] 
+	    s = u*u; 
+        end;
+	mat1 = _square(b);
+	function [int x] = _recursive[int u,int v] 
+	    int p,q,r; 
+	    p = u+v;
+	    q = u-v;
+	    x = _recursive(p,q);
+        end;
+end;
+
+#Semantic errors
+#line number 8:Already declared:c on line number 
+#line number 8:Already declared:d on line number 
+#In Assignment statement, LHS and RHS do not match on line number 9
+#In Assignment statement, LHS and RHS do not match on line number 10
+#In Assignment statement, LHS and RHS do not match on line number 11
+#Output parameters are not initialized on line number 8
+#line number 14:Variable s not declared
+#line number 20:Already declared:_square on line number 
+#Mismatch number of output parameters for function call of ID: _square on line number 23
+#line number 28:recursive function definitions are not allowed, called for function ID: _recursive

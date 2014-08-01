@@ -10,6 +10,10 @@
 :nmap ; :
 :nmap , ;
 :nmap
+<<<<<<< HEAD
+=======
+ 0i//
+>>>>>>> 4ac8dd9cc81600cb3dbd34529630f26f83b85d0b
 :set cindent
 :set autoindent
 :set tabstop=2 " tab is 2 spaces
