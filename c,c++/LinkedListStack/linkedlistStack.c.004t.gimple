@@ -1,0 +1,105 @@
+create ()
+gimple_bind <
+  struct linkedlistStack * D.2711;
+  struct linkedlistStack * s;
+
+  gimple_call <malloc, s, 16>
+  gimple_cond <eq_expr, s, 0B, <D.2709>, <D.2710>>
+  gimple_label <<D.2709>>
+  gimple_assign <integer_cst, D.2711, 0B, NULL, NULL>
+  gimple_return <D.2711>
+  gimple_label <<D.2710>>
+  gimple_assign <integer_cst, s->count, 0, NULL, NULL>
+  gimple_assign <integer_cst, s->top, 0B, NULL, NULL>
+  gimple_assign <var_decl, D.2711, s, NULL, NULL>
+  gimple_return <D.2711>
+>
+
+
+isEmptyStack (struct linkedlistStack * s)
+gimple_bind <
+  struct node * D.2713;
+  int D.2716;
+
+  gimple_assign <component_ref, D.2713, s->top, NULL, NULL>
+  gimple_cond <eq_expr, D.2713, 0B, <D.2714>, <D.2715>>
+  gimple_label <<D.2714>>
+  gimple_assign <integer_cst, D.2716, 1, NULL, NULL>
+  gimple_return <D.2716>
+  gimple_label <<D.2715>>
+  gimple_assign <integer_cst, D.2716, 0, NULL, NULL>
+  gimple_return <D.2716>
+>
+
+
+push (int value, struct linkedlistStack * s)
+gimple_bind <
+  struct node * D.2718;
+  struct node * n;
+
+  gimple_call <malloc, n, 16>
+  gimple_assign <parm_decl, n->value, value, NULL, NULL>
+  gimple_assign <component_ref, D.2718, s->top, NULL, NULL>
+  gimple_assign <var_decl, n->next, D.2718, NULL, NULL>
+  gimple_assign <var_decl, s->top, n, NULL, NULL>
+>
+
+
+pop (struct linkedlistStack * s)
+gimple_bind <
+  struct node * D.2719;
+  int D.2722;
+  struct node * D.2723;
+  struct node * D.2724;
+  struct node * D.2725;
+
+  gimple_assign <component_ref, D.2719, s->top, NULL, NULL>
+  gimple_cond <eq_expr, D.2719, 0B, <D.2720>, <D.2721>>
+  gimple_label <<D.2720>>
+  gimple_assign <integer_cst, D.2722, -1, NULL, NULL>
+  gimple_return <D.2722>
+  gimple_label <<D.2721>>
+  gimple_bind <
+    int temp;
+    struct node * tmp;
+
+    gimple_assign <component_ref, D.2723, s->top, NULL, NULL>
+    gimple_assign <component_ref, temp, D.2723->value, NULL, NULL>
+    gimple_assign <component_ref, tmp, s->top, NULL, NULL>
+    gimple_assign <component_ref, D.2724, s->top, NULL, NULL>
+    gimple_assign <component_ref, D.2725, D.2724->next, NULL, NULL>
+    gimple_assign <var_decl, s->top, D.2725, NULL, NULL>
+    gimple_call <free, NULL, tmp>
+    gimple_assign <var_decl, D.2722, temp, NULL, NULL>
+    gimple_return <D.2722>
+  >
+>
+
+
+deleteStack (struct linkedlistStack * s)
+gimple_bind <
+  struct node * D.2729;
+  struct node * D.2730;
+
+  gimple_cond <ne_expr, s, 0B, <D.2727>, <D.2728>>
+  gimple_label <<D.2727>>
+  gimple_bind <
+    struct node * tmp;
+
+    gimple_assign <component_ref, tmp, s->top, NULL, NULL>
+    gimple_goto <<D.2706>>
+    gimple_label <<D.2705>>
+    gimple_assign <component_ref, tmp, s->top, NULL, NULL>
+    gimple_assign <component_ref, D.2729, s->top, NULL, NULL>
+    gimple_assign <component_ref, D.2730, D.2729->next, NULL, NULL>
+    gimple_assign <var_decl, s->top, D.2730, NULL, NULL>
+    gimple_call <free, NULL, tmp>
+    gimple_label <<D.2706>>
+    gimple_cond <ne_expr, tmp, 0B, <D.2705>, <D.2707>>
+    gimple_label <<D.2707>>
+    gimple_call <free, NULL, s>
+  >
+  gimple_label <<D.2728>>
+>
+
+

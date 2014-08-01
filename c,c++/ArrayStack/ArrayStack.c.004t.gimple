@@ -1,0 +1,173 @@
+CreateStack (int StackSize)
+gimple_bind <
+  struct ArrayStack * D.2786;
+  int D.2787;
+  long unsigned int D.2788;
+  long unsigned int D.2789;
+  void * D.2790;
+  struct ArrayStack * a;
+
+  gimple_call <malloc, a, 16>
+  gimple_cond <eq_expr, a, 0B, <D.2784>, <D.2785>>
+  gimple_label <<D.2784>>
+  gimple_assign <integer_cst, D.2786, 0B, NULL, NULL>
+  gimple_return <D.2786>
+  gimple_label <<D.2785>>
+  gimple_assign <integer_cst, a->top, -1, NULL, NULL>
+  gimple_assign <parm_decl, a->capacity, StackSize, NULL, NULL>
+  gimple_assign <component_ref, D.2787, a->capacity, NULL, NULL>
+  gimple_assign <nop_expr, D.2788, D.2787, NULL, NULL>
+  gimple_assign <mult_expr, D.2789, D.2788, 4, NULL>
+  gimple_call <malloc, D.2790, D.2789>
+  gimple_assign <var_decl, a->Array, D.2790, NULL, NULL>
+  gimple_assign <var_decl, D.2786, a, NULL, NULL>
+  gimple_return <D.2786>
+>
+
+
+IsEmpty (struct ArrayStack * s)
+gimple_bind <
+  int D.2792;
+  int D.2795;
+
+  gimple_assign <component_ref, D.2792, s->top, NULL, NULL>
+  gimple_cond <eq_expr, D.2792, -1, <D.2793>, <D.2794>>
+  gimple_label <<D.2793>>
+  gimple_assign <integer_cst, D.2795, 1, NULL, NULL>
+  gimple_return <D.2795>
+  gimple_label <<D.2794>>
+  gimple_assign <integer_cst, D.2795, 0, NULL, NULL>
+  gimple_return <D.2795>
+>
+
+
+IsFullStack (struct ArrayStack * s)
+gimple_bind <
+  int D.2797;
+  int D.2798;
+  int D.2799;
+  int D.2802;
+
+  gimple_assign <component_ref, D.2797, s->top, NULL, NULL>
+  gimple_assign <component_ref, D.2798, s->capacity, NULL, NULL>
+  gimple_assign <plus_expr, D.2799, D.2798, -1, NULL>
+  gimple_cond <eq_expr, D.2797, D.2799, <D.2800>, <D.2801>>
+  gimple_label <<D.2800>>
+  gimple_assign <integer_cst, D.2802, 1, NULL, NULL>
+  gimple_return <D.2802>
+  gimple_label <<D.2801>>
+  gimple_assign <integer_cst, D.2802, 0, NULL, NULL>
+  gimple_return <D.2802>
+>
+
+
+Push (int data, struct ArrayStack * s)
+gimple_bind <
+  int D.2804;
+  int * D.2807;
+  int D.2808;
+  int D.2809;
+  int D.2810;
+  long unsigned int D.2811;
+  long unsigned int D.2812;
+  int * D.2813;
+  extern int DoubleStack ();
+
+  gimple_call <IsFullStack, D.2804, s>
+  gimple_cond <eq_expr, D.2804, 0, <D.2805>, <D.2806>>
+  gimple_label <<D.2805>>
+  gimple_assign <component_ref, D.2807, s->Array, NULL, NULL>
+  gimple_assign <component_ref, D.2808, s->top, NULL, NULL>
+  gimple_assign <plus_expr, D.2809, D.2808, 1, NULL>
+  gimple_assign <var_decl, s->top, D.2809, NULL, NULL>
+  gimple_assign <component_ref, D.2810, s->top, NULL, NULL>
+  gimple_assign <nop_expr, D.2811, D.2810, NULL, NULL>
+  gimple_assign <mult_expr, D.2812, D.2811, 4, NULL>
+  gimple_assign <pointer_plus_expr, D.2813, D.2807, D.2812, NULL>
+  gimple_assign <parm_decl, *D.2813, data, NULL, NULL>
+  gimple_goto <<D.2814>>
+  gimple_label <<D.2806>>
+  gimple_call <DoubleStack, NULL, s>
+  gimple_label <<D.2814>>
+>
+
+
+pop (struct ArrayStack * s)
+gimple_bind <
+  int D.2815;
+  int D.2818;
+  int * D.2819;
+  int D.2820;
+  int D.2821;
+  int D.2822;
+  long unsigned int D.2823;
+  long unsigned int D.2824;
+  int * D.2825;
+
+  gimple_call <IsEmpty, D.2815, s>
+  gimple_cond <ne_expr, D.2815, 0, <D.2816>, <D.2817>>
+  gimple_label <<D.2816>>
+  gimple_assign <integer_cst, D.2818, -1, NULL, NULL>
+  gimple_return <D.2818>
+  gimple_label <<D.2817>>
+  gimple_assign <component_ref, D.2819, s->Array, NULL, NULL>
+  gimple_assign <component_ref, D.2820, s->top, NULL, NULL>
+  gimple_assign <var_decl, D.2821, D.2820, NULL, NULL>
+  gimple_assign <plus_expr, D.2822, D.2821, -1, NULL>
+  gimple_assign <var_decl, s->top, D.2822, NULL, NULL>
+  gimple_assign <nop_expr, D.2823, D.2821, NULL, NULL>
+  gimple_assign <mult_expr, D.2824, D.2823, 4, NULL>
+  gimple_assign <pointer_plus_expr, D.2825, D.2819, D.2824, NULL>
+  gimple_assign <mem_ref, D.2818, *D.2825, NULL, NULL>
+  gimple_return <D.2818>
+>
+
+
+top (struct ArrayStack * s)
+gimple_bind <
+  int D.2827;
+  int * D.2828;
+  int D.2829;
+  long unsigned int D.2830;
+  long unsigned int D.2831;
+  int * D.2832;
+
+  gimple_assign <component_ref, D.2828, s->Array, NULL, NULL>
+  gimple_assign <component_ref, D.2829, s->top, NULL, NULL>
+  gimple_assign <nop_expr, D.2830, D.2829, NULL, NULL>
+  gimple_assign <mult_expr, D.2831, D.2830, 4, NULL>
+  gimple_assign <pointer_plus_expr, D.2832, D.2828, D.2831, NULL>
+  gimple_assign <mem_ref, D.2827, *D.2832, NULL, NULL>
+  gimple_return <D.2827>
+>
+
+
+DeleteStack (struct ArrayStack * s)
+gimple_bind <
+  int * D.2836;
+  int * D.2839;
+
+  gimple_cond <eq_expr, s, 0B, <D.2834>, <D.2835>>
+  gimple_label <<D.2834>>
+  gimple_assign <component_ref, D.2836, s->Array, NULL, NULL>
+  gimple_cond <eq_expr, D.2836, 0B, <D.2837>, <D.2838>>
+  gimple_label <<D.2837>>
+  gimple_assign <component_ref, D.2839, s->Array, NULL, NULL>
+  gimple_call <free, NULL, D.2839>
+  gimple_label <<D.2838>>
+  gimple_call <free, NULL, s>
+  gimple_label <<D.2835>>
+>
+
+
+DoubleStack (struct ArrayStack * a)
+gimple_bind <
+  int D.2840;
+  int D.2841;
+
+  gimple_assign <component_ref, D.2840, a->capacity, NULL, NULL>
+  gimple_assign <mult_expr, D.2841, D.2840, 2, NULL>
+  gimple_assign <var_decl, a->capacity, D.2841, NULL, NULL>
+>
+
+

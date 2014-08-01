@@ -1,0 +1,33 @@
+main ()
+gimple_bind <
+  int D.2209;
+  int D.2210;
+  struct linkedlistStack * s;
+  int i;
+  int size;
+
+  gimple_call <create, s>
+  gimple_assign <integer_cst, size, 5, NULL, NULL>
+  gimple_assign <integer_cst, i, 0, NULL, NULL>
+  gimple_goto <<D.2203>>
+  gimple_label <<D.2202>>
+  gimple_call <push, NULL, i, s>
+  gimple_assign <plus_expr, i, i, 1, NULL>
+  gimple_label <<D.2203>>
+  gimple_cond <lt_expr, i, size, <D.2202>, <D.2204>>
+  gimple_label <<D.2204>>
+  gimple_assign <integer_cst, i, 0, NULL, NULL>
+  gimple_goto <<D.2206>>
+  gimple_label <<D.2205>>
+  gimple_call <pop, D.2209, s>
+  gimple_call <printf, NULL, "%d", D.2209>
+  gimple_assign <plus_expr, i, i, 1, NULL>
+  gimple_label <<D.2206>>
+  gimple_cond <lt_expr, i, size, <D.2205>, <D.2207>>
+  gimple_label <<D.2207>>
+  gimple_call <deleteStack, NULL, s>
+  gimple_assign <integer_cst, D.2210, 0, NULL, NULL>
+  gimple_return <D.2210>
+>
+
+
