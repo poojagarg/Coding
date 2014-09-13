@@ -26,6 +26,29 @@ vvii buildGraph(FILE* fp){
 }
 vi distanceVertex;
 void dijkstra(vvii graph){
+  int start=0; 
+  priority_queue<ii, vii, greater<ii> > Q;
+  Q.push(ii(0,start));
+  int n=graph.size();
+  distanceVertex.resize(n,INT_MAX);
+  distanceVertex[start]=0;
+  int count=0;
+  while(count<n){
+    ii p=Q.top();
+    Q.pop();
+    if(p.first<distanceVertex[p.second]){
+      count++;
+      distanceVertex[p.second]=p.first;
+      for((typeof)graph[p.second].begin() tr=graph[p.second].begin(); tr!=graph[p.second].end();tr++){
+        if(distanceVertex[tr->first]>distancVertex[p.second]+tr->second){
+          distanceVertex[tr->first]=distancVertex[p.second]+tr->second;
+          Q.push(ii(distanceVertex[tr->first], tr->first));
+        }
+      } 
+    }
+  }
+}
+void dijkstra(vvii graph){
 	int start=0;
 	ii p;
 	int n=graph.size();
@@ -34,13 +57,10 @@ void dijkstra(vvii graph){
 	priority_queue<ii,vector<ii>, greater<ii> > Q;
 	while(n!=0){
 		For(i,graph[start].size()){
-<<<<<<< HEAD
 			if(distance[graph[start][i].first]>(graph[start][i].first+distanceVertex[start])){
 				Q.push(ii(graph[start][i].first+distanceVertex[start],graph[start][i].second));
 				}
-=======
 			Q.push(ii(graph[start][i].first+distanceVertex[start],graph[start][i].second));
->>>>>>> 4ac8dd9cc81600cb3dbd34529630f26f83b85d0b
 		}
 		do{
 			p=Q.top();
@@ -51,7 +71,6 @@ void dijkstra(vvii graph){
 		n--;
 	}
 }
-<<<<<<< HEAD
 void dijkstraNew(vvii graph, int s){
 	priority_queue<ii, vector<ii> , greater<ii> > q; //first element is the distance, 2nd is the vertex
 	vector<int> distance(graph.size(), numeric_limits<int>::max());
@@ -149,8 +168,6 @@ void Kruskals(vvii graph){
 		}
 	}
 }
-=======
->>>>>>> 4ac8dd9cc81600cb3dbd34529630f26f83b85d0b
 int main(){
 	vvii graph=buildGraph(fopen("weighted_adjacencyList.txt","r"));
 	dijkstra(graph);

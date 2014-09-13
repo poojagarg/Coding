@@ -1,17 +1,13 @@
-#include <stdio.h>
-/* Usage of pointer to an array */ 
-int main( )
-{
-  int s[5][2] = {
-    { 1234, 56 },
-    { 1212, 33 }, { 1434, 80 }, { 1312, 78 }};
-  int (*p)[2];
-  int i,j, *pint;
-    for ( i = 0 ; i <= 3 ; i++ ) {
-      p = &s[i] ;
-      pint = *p ;
-      printf ( "\n" ) ;
-      for ( j = 0 ; j <= 1 ; j++ )
-        printf ( "%d ", *( pint + j ) ) ; }
-  }
-
+#include  <stdio.h>
+int main( ) {
+  static int a[ ] = {0,1,2,3,4};
+  int *p[ ] = {a,a+1,a+2,a+3,a+4};
+  int **ptr = p;
+  ptr++;
+  printf("\n %d %d %d", ptr-p, *ptr-a, **ptr); ptr++;
+  printf("\n %d %d %d", ptr-p, *ptr-a, **ptr); ++ptr;
+  printf("\n %d %d %d", ptr-p, *ptr-a, **ptr); ++*ptr;
+  printf("\n %d %d %d", ptr-p, *ptr-a, **ptr);
+  static int b;
+}
+b=10;
